@@ -1,5 +1,4 @@
 ﻿using System.Globalization;
-using CSharp.GraphQL.Client.ExtensionMethods;
 using CSharp.GraphQL.Client.Interfaces;
 using CSharp.GraphQL.Client.Models;
 using CSharp.GraphQL.Domain.Models;
@@ -35,8 +34,6 @@ public class ApiClient
             }}",
             variables = new
             {
-                // Here I could just add the props the way they are written in the query
-                // above, but why do that when I can make my life more complicated (and dynamic)? ;-)
                 product = newProduct
             }
         };
@@ -49,7 +46,7 @@ public class ApiClient
         var product = content.Data.AddProduct;
         return product;
     }
-    
+
     public async Task<Product> UpdateProduct(Guid productId, ProductUpdateInput productUpdate, params string[] fields)
     {
         var fieldsToFetch = string.Join(" ", fields.Length == 0 ? ProductKeys : fields);
@@ -74,9 +71,9 @@ public class ApiClient
         await response.EnsureSuccessStatusCodeAsync();
 
         var content = response.Content;
-        
+
         var product = content.Data.UpdateProduct;
-        
+
         return product;
     }
 
