@@ -1,3 +1,5 @@
+> This was meant has a demo, and part of a post.
+
 # GraphQL API and Client Project
 
 ## Overview
